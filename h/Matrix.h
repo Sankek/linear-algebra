@@ -1,15 +1,16 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include "../h/Rational.h"
 #include <cstdint>
 
 class Matrix{
 public:
     using index_t = int_fast32_t;
-    using element_t = double;
+    using element_t = Rational;
 private:
     element_t **array;
-    index_t size[2];
+    index_t size[2]{};
     Matrix arithmeticOperation(const Matrix& v, element_t (*operationFunc)(element_t, element_t));
 
     static element_t addOperation(element_t x, element_t y){return x+y;}
@@ -20,6 +21,8 @@ private:
 public:
     Matrix(index_t m=1, index_t n=1);
     ~Matrix();
+    Matrix(const Matrix& matrix);
+    Matrix& operator=(const Matrix& Matrix);
     void fill();
     void print();
     element_t getElement(const index_t& m, const index_t& n) const ;

@@ -3,4 +3,4 @@ project(homework1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(homework1 src/main.cpp h/Matrix.h h/Vector.h src/Matrix.cpp src/Vector.cpp)
+add_executable(homework1 src/main.cpp h/Matrix.h h/Vector.h src/Matrix.cpp src/Vector.cpp src/Rational.cpp h/Rational.h)

@@ -2,55 +2,76 @@
 #include <string>
 #include "../h/Vector.h"
 #include "../h/Matrix.h"
+#include "../h/Rational.h"
+#include <random>
+#include <ctime>
+#include <cstdlib>
+
+using int_t = int_fast32_t;
+using std::cout;
+
+namespace RNG{
+    std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
+}
+
+int GetRandomNumber(int min, int max)
+{
+    std::uniform_int_distribution<> die{ min, max };
+    return die(RNG::mersenne);
+}
+
+Matrix GetRandomRationalMatrix(int_t rows, int_t columns){
+    Matrix matrix(rows, columns);
+    for (int_t m{}; m<matrix.getSize(0); ++m){
+        for (int_t n{}; n<matrix.getSize(1); ++n){
+            matrix.setElement(m, n,
+                    Rational(GetRandomNumber(-20, 20),
+                            GetRandomNumber(1, 20)));
+        }
+    }
+    return matrix;
+}
+
+void MatrixPresentation(){
+    Matrix A{GetRandomRationalMatrix(2, 3)};
+    A.print();
+    cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+    Matrix B{GetRandomRationalMatrix(3, 4)};
+    B.print();
+    cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+    cout << "Their product: \n";
+    A.dot(B).print();
+    cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+}
+
+void VectorPresentation(){
+    cout << "\nFill two vectors with fractions, please!\n";
+    Vector v1(3);
+    Vector v2(3);
+    v1.fill();
+    cout << '\n';
+    v2.fill();
+    cout << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
+    cout << "v1:\n";
+    v1.print();
+    cout << "v2:\n";
+    v2.print();
+    cout << "Dot product of v1, v2: " << v1.dot(v2) << '\n';
+}
 
 int main() {
-    std::cout << "--- MATRIX PRESENTATION ---\n";
-    Matrix m(2, 3);
-    Matrix n(3, 3);
+    MatrixPresentation();
+    VectorPresentation();
 
-    m.setElement(0,2,3);
-    m.setElement(1,1,4);
-
-    n.fill();
-
-    std::cout << "Matrix M:\n";
-    m.print();
-    std::cout << "---\n" << "Matrix N:\n";
-    n.print();
-    std::cout << "---\n";
-    std::cout << "Matrix product MN:\n";
-    m.dot(n).print();
-
-    std::cout << "\n------------------------------------------------------------\n\n";
-
-    std::cout << "--- VECTOR PRESENTATION ---\n";
-    std::cout << "Input vectors' size:\n";
-    int v_size;
-    std::cin >> v_size;
-    Vector v1(v_size);
-    Vector v2(v_size);
-
-    for (int i{}; i<v_size; ++i){
-        v1.setElement(i, i);
-        v2.setElement(i, i*i);
-    }
-
-    std::cout << "v1:\n";
-    v1.print();
-    std::cout << "v2:\n";
-    v2.print();
-    std::cout << "Dot product of v1, v2: " << v1.dot(v2) << '\n';
-    std::cout << "Sum of v1, v2: \n";
-    v1.sum(v2).print();
-
+    cout << '\n';
     char ans{};
     while(true){
-        std::cout << "Exit? Y/N?\n";
+        cout << "Exit? Y/N?\n";
         std::cin >> ans;
         if (ans == 'Y'){
-            exit(0);
+            return 0;
         } else {
-            std::cout << "Are you sure? ";
+            cout << "Are you sure? ";
         }
     }
     return 0;

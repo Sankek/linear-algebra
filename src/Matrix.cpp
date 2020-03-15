@@ -32,11 +32,64 @@ Matrix::Matrix(index_t m, index_t n){
 }
 
 Matrix::~Matrix(){
-//    for (index_t i{}; i<size[0]; ++i){
-//        delete[] array[i];
-//    }
-//    delete[] array;
+    for (index_t i{}; i<size[0]; ++i){
+        delete[] array[i];
+    }
+    delete[] array;
 }
+
+Matrix::Matrix(const Matrix& matrix):
+    array{nullptr} {
+    size[0] = matrix.size[0];
+    size[1] = matrix.size[1];
+    if (array){
+        for (index_t i{}; i < size[0]; ++i) {
+            if (array[i]){
+                delete[] array[i];
+            }
+        }
+        delete[] array;
+    }
+
+    array = new element_t *[size[0]]{};
+    for (index_t i{}; i < size[0]; ++i) {
+        array[i] = new element_t[size[1]]{};
+    }
+
+    for (index_t m{}; m<size[0]; ++m) {
+        for (index_t n{}; n<size[1]; ++n){
+            array[m][n] = matrix.array[m][n];
+        }
+    }
+}
+
+Matrix& Matrix::operator=(const Matrix& matrix) {
+    if (this == &matrix){
+        return *this;
+    }
+
+    size[0] = matrix.size[0];
+    size[1] = matrix.size[1];
+
+    for (index_t i{}; i<size[0]; ++i) {
+        delete[] array[i];
+    }
+    delete[] array;
+
+    array = new element_t*[size[0]]{};
+    for (index_t i{}; i<size[0]; ++i) {
+        array[i] = new element_t[size[1]]{};
+    }
+
+    for (index_t m{}; m<size[0]; ++m) {
+        for (index_t n{}; n<size[1]; ++n){
+            array[m][n] = matrix.array[m][n];
+        }
+    }
+    return *this;
+}
+
+
 
 void Matrix::fill() {
     std::cout << "Enter " << size[0]*size[1] << " values: \n";

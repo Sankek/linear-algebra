@@ -19,6 +19,33 @@ Vector::Vector(index_t n){
     array = new element_t[n]{};
 }
 
+Vector::Vector(const Vector& vector):
+    array{nullptr} {
+    size = vector.size;
+
+    delete[] array;
+    array = new element_t[size]{};
+
+    for (index_t i{}; i<size; ++i) {
+        array[i] = vector.array[i];
+    }
+}
+
+Vector& Vector::operator=(const Vector& vector) {
+    if (this == &vector){
+        return *this;
+    }
+    size = vector.size;
+
+    delete[] array;
+    array = new element_t[size]{};
+
+    for (index_t i{}; i<size; ++i) {
+        array[i] = vector.array[i];
+    }
+    return *this;
+}
+
 void Vector::fill() {
     std::cout << "Enter " << size << " values: ";
     for (index_t i{}; i < size; ++i) {

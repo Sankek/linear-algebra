@@ -1,12 +1,13 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include "../h/Rational.h"
 #include <cstdint>
 
 class Vector{
 public:
     using index_t = int_fast32_t ;
-    using element_t = double;
+    using element_t = Rational;
 private:
     element_t *array;
     index_t size;
@@ -20,11 +21,13 @@ private:
 
 public:
     Vector(index_t n=1);
-//    ~Vector(){delete[] array;}
+    ~Vector(){delete[] array;}
+    Vector(const Vector& matrix);
+    Vector& operator=(const Vector& Matrix);
     void fill();
     void print();
     element_t getElement(const index_t& i) const ;
-    element_t getSize() const {return size;};
+    index_t getSize() const {return size;};
     void setElement(index_t i, element_t x);
 
     Vector sum(const Vector& v){ return arithmeticOperation(v, addOperation); }
