@@ -40,6 +40,7 @@ Matrix::~Matrix(){
 
 Matrix::Matrix(const Matrix& matrix):
     array{nullptr} {
+
     size[0] = matrix.size[0];
     size[1] = matrix.size[1];
     if (array){
@@ -88,8 +89,6 @@ Matrix& Matrix::operator=(const Matrix& matrix) {
     }
     return *this;
 }
-
-
 
 void Matrix::fill() {
     std::cout << "Enter " << size[0]*size[1] << " values: \n";

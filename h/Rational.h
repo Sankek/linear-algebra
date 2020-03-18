@@ -13,7 +13,6 @@ public:
 private:
     element_t numerator{};
     element_t denominator{1};
-    bool proper{};
     void ReduceFraction();
 
 public:
@@ -29,11 +28,16 @@ public:
     Rational negative(const Rational& q) const;
     Rational subtract(const Rational& q) const;
     Rational multiply(const Rational& q) const;
-    Rational inverse(const Rational& q) const;
+    Rational inverse() const;
     Rational divide(const Rational& q) const;
     bool isEqual(const Rational& q) const;
+    bool isLess(const Rational& q) const;
+    bool isLessEqual(const Rational& q) const;
+    bool isGreater(const Rational& q) const;
+    bool isGreaterEqual(const Rational& q) const;
 };
 
+Rational operator-(const Rational& q);
 Rational operator+(const Rational& q1, const Rational& q2);
 Rational operator-(const Rational& q1, const Rational& q2);
 Rational operator*(const Rational& q1, const Rational& q2);
@@ -43,6 +47,13 @@ Rational operator+=(Rational& q1, const Rational& q2);
 Rational operator-=(Rational& q1, const Rational& q2);
 Rational operator*=(Rational& q1, const Rational& q2);
 Rational operator/=(Rational& q1, const Rational& q2);
+
+bool operator==(const Rational& q1, const Rational& q2);
+bool operator!=(const Rational& q1, const Rational& q2);
+bool operator<(const Rational& q1, const Rational& q2);
+bool operator<=(const Rational& q1, const Rational& q2);
+bool operator>(const Rational& q1, const Rational& q2);
+bool operator>=(const Rational& q1, const Rational& q2);
 
 
 

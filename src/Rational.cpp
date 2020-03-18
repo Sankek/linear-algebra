@@ -1,11 +1,12 @@
 #include "../h/Rational.h"
 #include <cassert>
 #include <iostream>
+#include <string>
 
 using element_t = Rational::element_t;
 using index_t = Rational::index_t;
 
-static bool ShowProperFractions{true};
+constexpr bool ShowProperFractions{true};
 
 element_t GreatestCommonDivisor(element_t a, element_t b) {
     // using Euclidean algorithm
@@ -59,37 +60,12 @@ void Rational::print() {
     }
 }
 
-std::ostream& operator<< (std::ostream &out, const Rational &q)
-{
-    if (!ShowProperFractions){
-        std::cout << q.numerator << '/' << q.denominator;
-    } else {
-        element_t f{q.numerator/q.denominator};
-        if (f!=0){
-            if (q.numerator%q.denominator == 0){
-                out << f;
-            } else {
-                out << f << '(' << std::abs(q.numerator)%q.denominator << '/' << q.denominator << ')';
-            }
-        } else {
-            out << (q.numerator)%q.denominator << '/' << q.denominator;
-        }
-    }
-    return out;
-}
 
-std::istream& operator>> (std::istream &in, Rational &q)
-{
-    in >> q.numerator;
-    in >> q.denominator;
-    assert(q.denominator != 0 && "Zero division!");
-    q.ReduceFraction();
-    return in;
-}
 
 Rational Rational::sum(const Rational& q) const {
     return Rational( numerator*q.denominator+denominator*q.numerator,
-            denominator*q.denominator);}
+            denominator*q.denominator);
+}
 
 Rational operator+(const Rational& q1, const Rational& q2){
     return q1.sum(q2);
@@ -100,12 +76,17 @@ Rational operator+=(Rational& q1, const Rational& q2){
     return q1;
 }
 
-Rational Rational::negative(const Rational &q) const {return Rational(-numerator, denominator);}
+Rational Rational::negative(const Rational &q) const {
+    return Rational(-numerator, denominator);
+}
+
+Rational operator-(const Rational& q){
+    return q.negative(q);
+}
 
 Rational Rational::subtract(const Rational &q) const {
     return sum(negative(q));
 }
-
 
 Rational operator-(const Rational& q1, const Rational& q2){
     return q1.subtract(q2);
@@ -130,13 +111,15 @@ Rational operator*=(Rational& q1, const Rational& q2){
     return q1;
 }
 
-Rational Rational::inverse(const Rational &q) const {
-    return Rational(denominator, numerator);}
-
-Rational Rational::divide(const Rational& q) const {
-    return Rational(multiply(inverse(q)));
+Rational Rational::inverse() const {
+    assert(numerator != 0 && "Zero division!");
+    return Rational(denominator, numerator);
 }
 
+Rational Rational::divide(const Rational& q) const {
+    assert(q.numerator != 0 && "Zero division!");
+    return Rational(multiply(q.inverse()));
+}
 
 Rational operator/(const Rational& q1, const Rational& q2){
     return q1.divide(q2);
@@ -147,5 +130,92 @@ Rational operator/=(Rational& q1, const Rational& q2){
     return q1;
 }
 
+
 bool Rational::isEqual(const Rational& q) const {
-    return (numerator == q.numerator) && (denominator == q.denominator);}
+    return (numerator*q.denominator-denominator*q.numerator)==0;
+}
+
+bool operator==(const Rational& q1, const Rational& q2){
+    return q1.isEqual(q2);
+}
+
+bool operator!=(const Rational& q1, const Rational& q2){
+    return !q1.isEqual(q2);
+}
+
+bool Rational::isLess(const Rational& q) const {
+    return (numerator*q.denominator-denominator*q.numerator)<0;
+}
+
+bool operator<(const Rational& q1, const Rational& q2){
+    return q1.isLess(q2);
+}
+
+bool Rational::isLessEqual(const Rational& q) const {
+    return (numerator*q.denominator-denominator*q.numerator)<=0;
+}
+
+bool operator<=(const Rational& q1, const Rational& q2){
+    return q1.isLessEqual(q2);
+}
+
+bool Rational::isGreater(const Rational& q) const {
+    return (numerator*q.denominator-denominator*q.numerator)>0;
+}
+
+bool operator>(const Rational& q1, const Rational& q2){
+    return q1.isGreater(q2);
+}
+
+bool Rational::isGreaterEqual(const Rational& q) const {
+    return (numerator*q.denominator-denominator*q.numerator)>=0;
+}
+
+bool operator>=(const Rational& q1, const Rational& q2){
+    return q1.isGreaterEqual(q2);
+}
+
+std::ostream& operator<< (std::ostream &out, const Rational &q)
+{
+    if (!ShowProperFractions){
+        if (q.numerator == 0){
+            out << 0;
+        } else if (q.denominator == 1){
+            out << q.numerator;
+        } else {
+            out << q.numerator << '/' << q.denominator;
+        }
+    } else {
+        element_t int_part{q.numerator/q.denominator};
+        if (int_part==0){
+            if (q.numerator == 0){
+                out << 0;
+            } else {
+                out << q.numerator << '/' << q.denominator;
+            }
+        } else {
+            if (q.numerator%q.denominator == 0){
+                out << int_part;
+            } else {
+                out << int_part << '+' << std::abs(q.numerator)%q.denominator << '/' << q.denominator;
+            }
+        }
+    }
+    return out;
+}
+
+std::istream& operator>> (std::istream &in, Rational &q)
+{
+    std::string input;
+    in >> input;
+    index_t pos = input.find('/');
+    if (pos == -1){
+        q.numerator = std::stoi(input);
+    } else {
+        q.denominator = std::stoi(input.substr(pos+1));
+        assert(q.denominator != 0 && "Zero division!");
+        q.numerator = std::stoi(input.substr(0, pos));
+    }
+    q.ReduceFraction();
+    return in;
+}
