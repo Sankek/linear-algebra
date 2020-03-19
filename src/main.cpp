@@ -9,6 +9,7 @@
 
 using int_t = int_fast32_t;
 using std::cout;
+using namespace mathkeklib;
 
 namespace RNG{
     std::mt19937 mersenne{ static_cast<std::mt19937::result_type>(std::time(nullptr)) };
@@ -35,41 +36,40 @@ Matrix GetRandomRationalMatrix(int_t rows, int_t columns){
 void PauseBeforeExit(){
     char ans{};
     while(true){
-        cout << "Exit? Y/N?\n";
+        std::cout << "Exit? Y/N?\n";
         std::cin >> ans;
         if (ans == 'Y'){
             exit(0);
         } else {
-            cout << "Are you sure? ";
+            std::cout << "Are you sure? ";
         }
     }
 }
 
 void MatrixPresentation(){
     std::cout << "--- Matrices presentation ---\n";
-    std::cout << "Random matrix 2x3 matrix:\n";
+    std::cout << "Random 2x3 matrix:\n";
     Matrix A{GetRandomRationalMatrix(2, 3)};
     A.print();
-    std::cout << "Random matrix 3x4 matrix:\n";
+    std::cout << "Random 3x4 matrix:\n";
     Matrix B{GetRandomRationalMatrix(3, 4)};
     B.print();
-    cout << "Their product: \n";
+    std::cout << "Their product: \n";
     A.dot(B).print();
 }
 
 void VectorPresentation(){
     std::cout << "--- Vectors presentation ---\n";
-    cout << "Fill two vectors with fractions, please!\n";
+    std::cout << "Fill two vectors with fractions, please!\n";
     Vector v1(3);
     Vector v2(3);
     v1.fill();
-    cout << '\n';
     v2.fill();
-    cout << "v1:\n";
+    std::cout << "v1:\n";
     v1.print();
-    cout << "v2:\n";
+    std::cout << "v2:\n";
     v2.print();
-    cout << "Dot product of v1, v2: " << v1.dot(v2) << '\n';
+    std::cout << "Dot product of v1, v2: " << v1.dot(v2) << '\n';
 }
 
 void RationalPresentation(){
@@ -78,7 +78,11 @@ void RationalPresentation(){
     std::cout << "Enter two rational numbers (e.g. 2/3):";
     std::cin >> A >> B;
     std::cout << "A: " << A << ", B:  " << B << '\n';
-    std::cout << "Inverse of A: " << A.inverse() << '\n';
+    if (A != 0){
+        std::cout << "Inverse of A: " << A.inverse() << '\n';
+    } else {
+        std::cout << "There is no inverse for A\n";
+    }
     if (A<B){
         std::cout << "A<B, ";
     } else {
@@ -91,7 +95,11 @@ void RationalPresentation(){
     }
     std::cout << "A+B: " << A+B << '\n';
     std::cout << "A*B: " << A*B << '\n';
-    std::cout << "A/B: " << A/B << '\n';
+    if (B != 0){
+        std::cout << "A/B: " << A/B << '\n';
+    } else {
+        std::cout << "A is not divisible by 0\n";
+    }
 }
 
 int main() {
@@ -101,7 +109,7 @@ int main() {
     MatrixPresentation();
     VectorPresentation();
 
-    cout << '\n';
+    std::cout << '\n';
     PauseBeforeExit();
     return 0;
 }
