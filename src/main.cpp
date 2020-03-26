@@ -1,11 +1,15 @@
 #include <iostream>
 #include <string>
-#include "../h/Vector.h"
-#include "../h/Matrix.h"
-#include "../h/Rational.h"
 #include <random>
 #include <ctime>
 #include <cstdlib>
+
+#include "../h/Vector.h"
+#include "../h/Matrix.h"
+#include "../h/Rational.h"
+#include "../h/Monome.h"
+#include "../h/Polynome.h"
+#include "../h/Solver.h"
 
 using int_t = int_fast32_t;
 using std::cout;
@@ -134,9 +138,25 @@ void RationalPresentation(){
 int main() {
     // If you want to show improper fractions change ShowProperFractions constant in Rational.cpp
 
-    RationalPresentation();
-    MatrixPresentation();
-    VectorPresentation();
+//    RationalPresentation();
+//    MatrixPresentation();
+//    VectorPresentation();
+    Solver Solver1;
+    Solver1.SetBorders(0, 1);
+    Solver1.SetInitialValue(0);
+    Solver1.SetStep(0.01);
+    std::string str = "1*x^2*y^0-2*x^0*y^1";
+    Solver1.SetFunction(str);
+
+    std::cout << "f(x, y): ";
+    Solver1.PrintFunction();
+    std::cout << '\n';
+    std::cout << "Left border: " << Solver1.GetLeftBorder() << '\n';
+    std::cout << "Right border: " << Solver1.GetRightBorder() << '\n';
+    std::cout << "Step: " << Solver1.GetStep() << '\n';
+    std::cout << "y(a): " << Solver1.GetInitialValue() << '\n';
+    Solver1.Solve();
+    Solver1.PrintSolution();
 
     std::cout << '\n';
     PauseBeforeExit();
