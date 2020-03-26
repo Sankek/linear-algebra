@@ -26,7 +26,7 @@ namespace mathkeklib{
         element_t getDenominator() const {return denominator;}
 
         Rational sum(const Rational& q) const;
-        Rational negative(const Rational& q) const;
+        Rational negative() const;
         Rational subtract(const Rational& q) const;
         Rational multiply(const Rational& q) const;
         Rational inverse() const;

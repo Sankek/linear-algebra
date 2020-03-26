@@ -7,12 +7,32 @@ using index_t = mathkeklib::Matrix::index_t;
 
 namespace mathkeklib {
 
-    Matrix Matrix::arithmeticOperation(const Matrix &v, element_t (*operationFunc)(element_t, element_t)) {
+    Matrix Matrix::binaryOperation(const Matrix &v, element_t (*operationFunc)(element_t, element_t)) const {
         assert((v.getSize(0) == size[0]) && (v.getSize(1) == size[1]) && "Operands don't match in size.");
         Matrix matr_temp(size[0], size[1]);
         for (index_t m{0}; m < size[0]; ++m) {
             for (index_t n{0}; n < size[1]; ++n) {
                 matr_temp.setElement(m, n, (*operationFunc)(array[m][n], v.getElement(m, n)));
+            }
+        }
+        return matr_temp;
+    }
+
+    Matrix Matrix::binaryOperation(const element_t &c, element_t (*operationFunc)(element_t, element_t)) const {
+        Matrix matr_temp(size[0], size[1]);
+        for (index_t m{0}; m < size[0]; ++m) {
+            for (index_t n{0}; n < size[1]; ++n) {
+                matr_temp.setElement(m, n, (*operationFunc)(array[m][n], c));
+            }
+        }
+        return matr_temp;
+    }
+
+    Matrix Matrix::unaryOperation(element_t (*operationFunc)(element_t)) const {
+        Matrix matr_temp(size[0], size[1]);
+        for (index_t m{0}; m < size[0]; ++m) {
+            for (index_t n{0}; n < size[1]; ++n) {
+                matr_temp.setElement(m, n, (*operationFunc)(array[m][n]));
             }
         }
         return matr_temp;
@@ -123,7 +143,7 @@ namespace mathkeklib {
         array[m][n] = x;
     }
 
-    Matrix Matrix::dot(Matrix &v) {
+    Matrix Matrix::dot(const Matrix &v) const {
         assert(size[1] == v.getSize(0) && "Operands don't match in size.");
         Matrix matr_temp(size[0], v.getSize(1));
         element_t sum{};
@@ -137,5 +157,72 @@ namespace mathkeklib {
             }
         }
         return matr_temp;
+    }
+    
+    bool Matrix::isEqual(const Matrix &v) const {
+        if ((size[0] != v.size[0]) || (size[1] != v.size[1])){
+            return false;
+        } else {
+            for (index_t m{0}; m < size[0]; ++m) {
+                for (index_t n{0}; n < size[1]; ++n) {
+                    if (array[m][n] != v.array[m][n]){
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        return true;
+    }
+
+    Matrix Matrix::operator-() const {
+        return negative();
+    }
+
+    Matrix Matrix::operator+(const Matrix& v) const {
+        return sum(v);
+    }
+
+    Matrix Matrix::operator-(const Matrix& v) const {
+        return sum(v.negative());
+    }
+
+    Matrix Matrix::operator*(const Matrix& v) const{
+        return dot(v);
+    }
+
+    Matrix Matrix::operator*(const element_t& c) const{
+        return multiply(c);
+    }
+
+    Matrix Matrix::operator/(const element_t& c) const{
+        return divide(c);
+    }
+
+    Matrix Matrix::operator+=(const Matrix& v){
+        *this = *this + v;
+        return *this;
+    }
+
+    Matrix Matrix::operator-=(const Matrix& v){
+        *this = *this - v;
+        return *this;
+    }
+
+    Matrix Matrix::operator*=(const element_t& c) {
+        *this = (*this * c);
+        return *this;
+    }
+
+    Matrix Matrix::operator/=(const element_t& c) {
+        *this = (*this * c);
+        return *this;
+    }
+
+    bool Matrix::operator==(const Matrix& v) const {
+        return this->isEqual(v);
+    }
+    bool Matrix::operator!=(const Matrix& v) const {
+        return !(this->isEqual(v));
     }
 }

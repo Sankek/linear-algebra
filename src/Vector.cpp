@@ -7,11 +7,27 @@ using index_t = mathkeklib::Vector::index_t;
 
 namespace mathkeklib {
 
-    Vector Vector::arithmeticOperation(const Vector &v, element_t (*operationFunc)(element_t, element_t)) {
+    Vector Vector::binaryOperation(const Vector &v, element_t (*operationFunc)(element_t, element_t)) const {
         assert(v.getSize() == size && "Operands don't match in size.");
         Vector v_temp(size);
         for (index_t i{}; i < size; ++i) {
             v_temp.setElement(i, (*operationFunc)(array[i], v.getElement(i)));
+        }
+        return v_temp;
+    }
+
+    Vector Vector::binaryOperation(const element_t &c, element_t (*operationFunc)(element_t, element_t)) const {
+        Vector v_temp(size);
+        for (index_t i{}; i < size; ++i) {
+            v_temp.setElement(i, (*operationFunc)(array[i], c));
+        }
+        return v_temp;
+    }
+
+    Vector Vector::unaryOperation(element_t (*operationFunc)(element_t)) const {
+        Vector v_temp(size);
+        for (index_t i{}; i < size; ++i) {
+            v_temp.setElement(i, (*operationFunc)(array[i]));
         }
         return v_temp;
     }
@@ -73,12 +89,76 @@ namespace mathkeklib {
         array[i] = x;
     }
 
-    element_t Vector::dot(const Vector &v) {
+    element_t Vector::dot(const Vector &v) const {
         assert(v.getSize() == size && "Operands don't match in size.");
         element_t product{};
         for (index_t i{0}; i < size; ++i) {
             product += array[i] * v.getElement(i);
         }
         return product;
+    }
+
+    bool Vector::isEqual(const Vector &v) const {
+        if (size != v.size){
+            return false;
+        } else {
+            for (index_t i{}; i<size; ++i){
+                if (array[i] != v.array[i]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    Vector Vector::operator-() const {
+        return negative();
+    }
+
+    Vector Vector::operator+(const Vector& v) const {
+        return sum(v);
+    }
+
+    Vector Vector::operator-(const Vector& v) const {
+        return sum(v.negative());
+    }
+
+    element_t Vector::operator*(const Vector& v) const{
+        return dot(v);
+    }
+
+    Vector Vector::operator*(const element_t& c) const{
+        return multiply(c);
+    }
+
+    Vector Vector::operator/(const element_t& c) const{
+        return divide(c);
+    }
+
+    Vector Vector::operator+=(const Vector& v){
+        *this = *this + v;
+        return *this;
+    }
+
+    Vector Vector::operator-=(const Vector& v){
+        *this = *this - v;
+        return *this;
+    }
+
+    Vector Vector::operator*=(const element_t& c) {
+        *this = (*this * c);
+        return *this;
+    }
+
+    Vector Vector::operator/=(const element_t& c) {
+        *this = (*this * c);
+        return *this;
+    }
+
+    bool Vector::operator==(const Vector& v) const {
+        return this->isEqual(v);
+    }
+    bool Vector::operator!=(const Vector& v) const {
+        return !(this->isEqual(v));
     }
 }

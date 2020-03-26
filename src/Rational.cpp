@@ -8,7 +8,7 @@ using index_t = mathkeklib::Rational::index_t;
 
 
 namespace mathkeklib {
-    constexpr bool ShowProperFractions{true};
+    constexpr bool ShowProperFractions{false};
 
     element_t GreatestCommonDivisor(element_t a, element_t b) {
         // using Euclidean algorithm
@@ -64,16 +64,16 @@ namespace mathkeklib {
         return q1;
     }
 
-    Rational Rational::negative(const Rational &q) const {
+    Rational Rational::negative() const {
         return Rational(-numerator, denominator);
     }
 
     Rational operator-(const Rational &q) {
-        return q.negative(q);
+        return q.negative();
     }
 
     Rational Rational::subtract(const Rational &q) const {
-        return sum(negative(q));
+        return sum(q.negative());
     }
 
     Rational operator-(const Rational &q1, const Rational &q2) {

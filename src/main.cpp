@@ -21,16 +21,27 @@ int GetRandomNumber(int min, int max)
     return die(RNG::mersenne);
 }
 
-Matrix GetRandomRationalMatrix(int_t rows, int_t columns){
+Rational GetRandomRational(){
+    return Rational(GetRandomNumber(-2, 2), GetRandomNumber(3, 4));
+}
+
+Matrix GetRandomMatrix(int_t rows, int_t columns){
     Matrix matrix(rows, columns);
     for (int_t m{}; m<matrix.getSize(0); ++m){
         for (int_t n{}; n<matrix.getSize(1); ++n){
             matrix.setElement(m, n,
-                    Rational(GetRandomNumber(-20, 20),
-                            GetRandomNumber(1, 20)));
+                    GetRandomNumber(-2, 2));
         }
     }
     return matrix;
+}
+
+Vector GetRandomVector(int_t size){
+    Vector v(size);
+    for (int_t m{}; m<v.getSize(); ++m){
+        v.setElement(m, GetRandomNumber(-2, 2));
+    }
+    return v;
 }
 
 void PauseBeforeExit(){
@@ -48,35 +59,50 @@ void PauseBeforeExit(){
 
 void MatrixPresentation(){
     std::cout << "--- Matrices presentation ---\n";
-    std::cout << "Random 2x3 matrix:\n";
-    Matrix A{GetRandomRationalMatrix(2, 3)};
+    std::cout << "Random 2x3 matrix A:\n";
+    Matrix A{GetRandomMatrix(2, 3)};
     A.print();
-    std::cout << "Random 3x4 matrix:\n";
-    Matrix B{GetRandomRationalMatrix(3, 4)};
+    std::cout << "Random 3x4 matrix B:\n";
+    Matrix B{GetRandomMatrix(3, 4)};
     B.print();
-    std::cout << "Their product: \n";
-    A.dot(B).print();
+    std::cout << "Their product (A*B): \n";
+    (A*B).print();
+    std::cout << "Random 2x2 matrix C:\n";
+    Matrix C{GetRandomMatrix(2, 2)};
+    C.print();
+    std::cout << "Another random 2x2 matrix D:\n";
+    Matrix D{GetRandomMatrix(2, 2)};
+    D.print();
+    std::cout << "Their sum (C+D):\n";
+    (C+D).print();
+    std::cout << "Their difference (C-D):\n";
+    (C-D).print();
+    std::cout << "First multiplyed by 2 (2C):\n";
+    (2*C).print();
 }
 
 void VectorPresentation(){
     std::cout << "--- Vectors presentation ---\n";
-    std::cout << "Fill two vectors with fractions, please!\n";
-    Vector v1(3);
-    Vector v2(3);
-    v1.fill();
-    v2.fill();
-    std::cout << "v1:\n";
-    v1.print();
-    std::cout << "v2:\n";
-    v2.print();
-    std::cout << "Dot product of v1, v2: " << v1.dot(v2) << '\n';
+    std::cout << "Random 3D vector A:\n";
+    Vector A{GetRandomVector(3)};
+    A.print();
+    std::cout << "Another random 3D vector B:\n";
+    Vector B{GetRandomVector(3)};
+    B.print();
+    std::cout << "Their dot product (A*B):\n";
+    std::cout << A*B << '\n';
+    std::cout << "Their sum (A+B):\n";
+    (A+B).print();
+    std::cout << "Their difference (A-B):\n";
+    (A-B).print();
+    std::cout << "First multiplyed by 2 (2A):\n";
+    (2*A).print();
 }
 
 void RationalPresentation(){
     std::cout << "--- Rational numbers presentation ---\n";
-    Rational A{}, B{};
-    std::cout << "Enter two rational numbers (e.g. 2/3):";
-    std::cin >> A >> B;
+    Rational A{GetRandomRational()}, B{GetRandomRational()};
+    std::cout << "Random rational numbers:\n";
     std::cout << "A: " << A << ", B:  " << B << '\n';
     if (A != 0){
         std::cout << "Inverse of A: " << A.inverse() << '\n';
@@ -94,11 +120,14 @@ void RationalPresentation(){
         std::cout << "A!=B, ";
     }
     std::cout << "A+B: " << A+B << '\n';
+    std::cout << "A-B: " << A-B << '\n';
     std::cout << "A*B: " << A*B << '\n';
+    std::cout << "A*3: " << A*3 << '\n';
     if (B != 0){
         std::cout << "A/B: " << A/B << '\n';
+        std::cout << "4/B: " << 4/B << '\n';
     } else {
-        std::cout << "A is not divisible by 0\n";
+        std::cout << "A is not divisible by B\n";
     }
 }
 
