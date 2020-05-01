@@ -1,0 +1,3 @@
+D:/Projects/horizons/homework1/cmake-build-debug/CMakeFiles/homework1.dir
+D:/Projects/horizons/homework1/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Projects/horizons/homework1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

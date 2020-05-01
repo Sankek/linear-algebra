@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="homework1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/Projects/horizons/homework1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="homework1">
+				<Option output="D:/Projects/horizons/homework1/cmake-build-debug/homework1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Projects/horizons/homework1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 homework1"/>
+					<CompileFile command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="homework1/fast">
+				<Option output="D:/Projects/horizons/homework1/cmake-build-debug/homework1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/Projects/horizons/homework1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+					<Add directory="d:\programs\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 homework1/fast"/>
+					<CompileFile command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/Projects/horizons/homework1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/Projects/horizons/homework1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Programs/MinGW/bin/mingw32-make.exe -f &quot;D:/Projects/horizons/homework1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/Projects/horizons/homework1/h/Matrix.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Monome.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Polynome.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Rational.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Scheme.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/SchemeCIR.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Solver.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/h/Vector.h">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Matrix.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Monome.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Polynome.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Rational.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Scheme.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/SchemeCIR.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Solver.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/Vector.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/src/main.cpp">
+			<Option target="homework1"/>
+		</Unit>
+		<Unit filename="D:/Projects/horizons/homework1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "Scheme.h"
 
@@ -10,11 +11,11 @@ namespace mathkeklib {
 
     class SchemeCIR : public Scheme {
     private:
-        std::vector<double> values_new{};
-        std::vector<double> values_old{};
+        std::vector<double> values_{};
 
     protected:
         void NextStep();
+        void ToCSV(std::ofstream& file, const std::vector<double>& values);
         void Print(std::vector<double> v);
 
     public:
@@ -23,10 +24,10 @@ namespace mathkeklib {
 
         std::vector<double> Init();
         void Calculate();
-        std::vector<double> GetValues() { return values_new; }
+        void Calculate(std::ofstream& file);
+        std::vector<double> GetValues() { return values_; }
 
-        void PrintLast() {Print(values_old); }
-        void PrintNew() { Print(values_new);}
+        void PrintValues() { Print(values_);}
     };
 
 }

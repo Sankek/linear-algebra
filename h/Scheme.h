@@ -10,6 +10,7 @@ namespace mathkeklib {
     private:
         double time_step_{0.01};
         int time_steps_count_{100};
+        int current_time_step_{};
         double time_limit_{1};
 
         double length_step_{0.01};
@@ -31,6 +32,7 @@ namespace mathkeklib {
         double GetLengthLimit() { return length_limit_; }
 
         int GetTimeStepsCount() { return time_steps_count_; }
+        int& CurrentTimeStep() { return current_time_step_; }
         double GetTimeStep() {return time_step_;}
         double GetTimeLimit() {return time_limit_;}
 

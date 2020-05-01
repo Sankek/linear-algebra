@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "../h/Scheme.h"
 #include "../h/SchemeCIR.h"
@@ -23,8 +24,8 @@ void PauseBeforeExit(){
 int main() {
     using std::cout;
 
-    SchemeCIR CIR(100, 500);
-    CIR.SetLimits(1, 3);
+    SchemeCIR CIR(200, 500);
+    CIR.SetLimits(10, 15);
     CIR.SetSpeed(1);
 
     if (CIR.CourantCondition()){
@@ -40,20 +41,11 @@ int main() {
     cout << "T\t=\t" << CIR.GetTimeLimit() << '\n';
     cout << '\n';
 
-    std::vector<double> Ux_0;
-    std::vector<double> Ux_T;
+    std::ofstream file;
+    file.open("data.csv");
+    CIR.Calculate(file);
+    file.close();
 
-    Ux_0 = CIR.Init();
-    cout << "U(x, 0):\n";
-    CIR.PrintLast();
-
-    CIR.Calculate();
-
-    Ux_T = CIR.GetValues();
-    cout << "U(x, T):\n";
-    CIR.PrintNew();
-
-    std::cout << '\n';
     PauseBeforeExit();
     return 0;
 }

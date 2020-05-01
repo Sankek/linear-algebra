@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Projects/horizons/homework1/h/Scheme.h
+cassert
+-
+vector
+-
+
+D:/Projects/horizons/homework1/h/SchemeCIR.h
+iostream
+-
+vector
+-
+fstream
+-
+Scheme.h
+D:/Projects/horizons/homework1/h/Scheme.h
+
+D:/Projects/horizons/homework1/src/main.cpp
+iostream
+-
+vector
+-
+fstream
+-
+../h/Scheme.h
+D:/Projects/horizons/homework1/h/Scheme.h
+../h/SchemeCIR.h
+D:/Projects/horizons/homework1/h/SchemeCIR.h
+
